@@ -1,20 +1,18 @@
 clc
 clear
 close all
-tic
 %the VideoReader create a object called video Object
 videoObject = VideoReader('video.mp4');  % The name of the video file being call is "Testfilerun.mov"
-    imageData = read(videoObject); 
-    numFrames = get(videoObject, 'NumberOfFrames');
-       Heig= get(videoObject, 'Height');
-       Wid= get(videoObject, 'Width');
-       Rateframe= get(videoObject, 'FrameRate');
-       time=get(videoObject, 'Duration'); 
-       for i =1:numFrames
-       meanwindow(i)=mean(mean(imageData(200:270,647:747,1,i)));
-       end
-       figure
-       plot([0:numFrames-1]/Rateframe,meanwindow);
+imageData = read(videoObject);
+numFrames = get(videoObject, 'NumberOfFrames');
+Rateframe= get(videoObject, 'FrameRate');
+time=get(videoObject, 'Duration');
+meanwindow = zeros(1, numFrames);
+    for i =1:numFrames
+        meanwindow(i)=mean(mean(imageData(200:270,647:747,1,i))); %mean(mean(window1));
+    end
+figure
+plot((0:numFrames-1)/Rateframe,meanwindow);
 %Filering of sample data
 Fs = numFrames/time; %Sampling frequency (Hz) 
 Fn = Fs/2; %% Nyquist Frequency (Hz)
@@ -29,4 +27,4 @@ figure(2)
 freqz(sosbp, 2^16, Fs);                                  % Filter Bode Plot
 s_filt = filtfilt(sosbp,gbp, meanwindow);                        % Filter Signal
 figure(3)
-plot([0:numFrames-1]/Rateframe, s_filt)
+plot((0:numFrames-1)/Rateframe, s_filt)
