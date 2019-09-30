@@ -1,4 +1,5 @@
 # VideoReader
+I would like to first thank Benjamin Bennett for making a great sample video
 The code is based on Matlab and to read and analyze video data
 The camara size 720X1080p
 The duration of video are limited to 10s or less 
