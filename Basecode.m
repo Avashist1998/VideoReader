@@ -28,3 +28,4 @@ freqz(sosbp, 2^16, Fs);                                  % Filter Bode Plot
 s_filt = filtfilt(sosbp,gbp, meanwindow);                        % Filter Signal
 figure(3)
 plot((0:numFrames-1)/Rateframe, s_filt)
+fprintf('Change')
