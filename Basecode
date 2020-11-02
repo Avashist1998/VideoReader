@@ -9,7 +9,7 @@ Rateframe= get(videoObject, 'FrameRate');
 time=get(videoObject, 'Duration');
 meanwindow = zeros(1, numFrames);
     for i =1:numFrames
-        meanwindow(i)=mean(mean(imageData(200:270,647:747,1,i))); %mean(mean(window1));
+        meanwindow(i)=mean(mean(imageData(200:270,647:747,2,i))); %mean(mean(window1));
     end
 figure
 plot((0:numFrames-1)/Rateframe,meanwindow);
